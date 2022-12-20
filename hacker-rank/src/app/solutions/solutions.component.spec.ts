@@ -3,6 +3,8 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { SolutionsComponent } from './solutions.component';
 import { default as nonDivisibleSubsetTest14Data } from './nonDivisibleSubSet_test_14.json';
 import { default as queenAttackTest18Data } from './queenAttack_test_18.json';
+import { default as acmTeamTest7Data } from './acmTeam_test_7.json';
+import { default as flatlandSpaceStationsTest13Data } from './flatlandSpaceStations_test_13.json';
 type TestDAta = {
   data: number[][];
 };
@@ -35,6 +37,34 @@ describe('SolutionsComponent', () => {
   }
   function testAcmTeam(topic: string[], expected: number[]) {
     expect(component.acmTeam(topic)).toEqual(expected);
+  }
+  function testTaumBday(b: number, w: number, bc: number, wc: number, z: number, expected: number) {
+    expect(component.taumBday(b, w, bc, wc, z)).toEqual(expected);
+  }
+  function testKaprekarNumbers(p: number, q: number, expected: string[]) {
+    expect(component.kaprekarNumbers(p, q)).toEqual(expected);
+  }
+  function testBeautifulTriplets(d: number, arr: number[], expected: number) {
+    expect(component.beautifulTriplets(d, arr)).toEqual(expected);
+  }
+  function testMinimumDistances(arr: number[], expected: number) {
+    expect(component.minimumDistances(arr)).toEqual(expected);
+  }
+  function testHowManyGames(p: number, d: number, m: number, s: number, expected: number) {
+    expect(component.howManyGames(p, d, m, s)).toEqual(expected);
+  }
+  function testTimeInWords(h: number, m: number, expected: string) {
+    expect(component.timeInWords(h, m)).toEqual(expected);
+  }
+  function testFlatlandSpaceStations(citiesCount: number, cities: number[], expected: number) {
+    expect(component.flatlandSpaceStations(citiesCount, cities)).toEqual(expected);
+  }
+  function testAlternate(s: string, expected: number) {
+    expect(component.alternate(s)).toEqual(expected);
+  }
+  function testIcecreamParlor(money: number, costs: number[], expected: number[]) {
+    expect(component.icecreamParlor(money, costs)).toEqual(expected);
+
   }
 
   beforeEach(async(() => {
@@ -159,8 +189,110 @@ describe('SolutionsComponent', () => {
   });
 
   it('test acmTeam HackerRank cases', () => {
-    testAcmTeam([""], []);
+    testAcmTeam(["1", "1"], [1, 1]);
+    testAcmTeam(["10101", "11110", "00010"], [5, 1]);
+    testAcmTeam(["10101", "11100", "11010", "00101"], [5, 2]);
+    testAcmTeam(["11101", "10101", "11001", "10111", "10000", "01110"], [5, 6]);
+    testAcmTeam(["1111", "0000", "0000"], [4, 2]);
+    testAcmTeam(["1111", "0000", "1111"], [4, 3]);
+    testAcmTeam(acmTeamTest7Data.data, [416, 1]);
   });
 
+  it('test taumBday HackerRank cases', () => {
+    testTaumBday(10, 10, 1, 1, 1, 20);
+    testTaumBday(5, 9, 2, 3, 4, 37);
+    testTaumBday(3, 6, 9, 1, 1, 12);
+    testTaumBday(7, 7, 4, 2, 1, 35);
+    testTaumBday(3, 3, 1, 9, 2, 12);
+    testTaumBday(3, 5, 3, 4, 1, 29);
+    //Test case 12
+    testTaumBday(443463982, 833847400, 429734889, 628664883, 610875522, 714782523241122198);
+    testTaumBday(623669229, 435417504, 266946955, 600641444, 515391879, 428016399954183471);
+    testTaumBday(763364819, 37220400, 711640763, 34378393, 655626808, 528005272909240819);
+    testTaumBday(177742229, 51792729, 358392247, 642296973, 158448705, 90470040201136571);
+    testTaumBday(402332409, 253667421, 384186676, 728988281, 883897044, 339491328041275785);
+    testTaumBday(962555475, 753433321, 20275090, 23915540, 815412555, 37534663611326090);
+    testTaumBday(853918694, 319895873, 649259954, 136169934, 948560755, 597975411899462458);
+    testTaumBday(112651828, 759839162, 236494610, 379598782, 212996957, 315075570539747764);
+    testTaumBday(751886489, 142963601, 250217357, 463527251, 29858345, 228175680952112475);
+    testTaumBday(905844164, 493785831, 81651073, 116752762, 136082804, 131614007567103194);
+  });
+
+  it('test kaprekarNumbers HackerRank cases', () => {
+    testKaprekarNumbers(1, 100, ["1", "9", "45", "55", "99"]);
+  });
+
+  it('test beautifulTriplets HackerRank cases', () => {
+    testBeautifulTriplets(3, [1, 2, 4, 5, 7, 8, 10], 3);
+    testBeautifulTriplets(3, [1, 6, 7, 7, 8, 10, 12, 13, 14, 19], 2);
+  });
+
+  it('test minimumDistances HackerRank cases', () => {
+    testMinimumDistances([7, 1, 3, 4, 1, 7], 3);
+    testMinimumDistances([1, 2, 3, 4, 10], -1);
+  });
+
+  it('test howManyGames HackerRank cases', () => {
+    testHowManyGames(20, 3, 6, 80, 6);
+    testHowManyGames(20, 3, 6, 85, 7);
+    testHowManyGames(56, 41, 4, 1546, 370);//test case43
+  });
+
+  it('test timeInWords HackerRank cases', () => {
+    testTimeInWords(3, 0, "three o' clock");
+    testTimeInWords(5, 1, "one minute past five");
+    testTimeInWords(5, 11, "eleven minutes past five");
+    testTimeInWords(5, 18, "eighteen minutes past five");
+    testTimeInWords(5, 30, "half past five");
+    testTimeInWords(7, 15, "quarter past seven");
+    testTimeInWords(5, 45, "quarter to six");
+    testTimeInWords(5, 59, "one minute to six");
+    testTimeInWords(5, 58, "two minutes to six");
+    testTimeInWords(5, 47, "thirteen minutes to six");
+    testTimeInWords(5, 44, "sixteen minutes to six");
+    testTimeInWords(12, 44, "sixteen minutes to one");
+    testTimeInWords(5, 28, "twenty eight minutes past five");
+  });
+
+  it('test flatlandSpaceStations HackerRank cases', () => {
+    testFlatlandSpaceStations(5, [0, 4], 2);
+    testFlatlandSpaceStations(5, [4, 0], 2);
+    testFlatlandSpaceStations(5, [4, 1], 1);
+    testFlatlandSpaceStations(6, [0, 1, 2, 4, 3, 5], 0);
+    testFlatlandSpaceStations(6, [0, 2], 3);
+    testFlatlandSpaceStations(6, [1], 4);
+    testFlatlandSpaceStations(3, [0], 2);
+    testFlatlandSpaceStations(3, [1], 1);
+    testFlatlandSpaceStations(3, [2], 2);
+    testFlatlandSpaceStations(4, [0], 3);
+    testFlatlandSpaceStations(4, [2, 0], 1);
+    testFlatlandSpaceStations(4, [3, 0], 1);
+    testFlatlandSpaceStations(6, [0, 5], 2);
+    testFlatlandSpaceStations(6, [0, 4], 2);
+    testFlatlandSpaceStations(6, [0, 3], 2);
+    testFlatlandSpaceStations(6, [5, 3], 3);
+    testFlatlandSpaceStations(7, [0, 4, 6], 2);
+    testFlatlandSpaceStations(1, [0], 0);
+    testFlatlandSpaceStations(2, [0], 1);
+    testFlatlandSpaceStations(5, [2], 2);
+    testFlatlandSpaceStations(25, [4], 20);
+    testFlatlandSpaceStations(100000, flatlandSpaceStationsTest13Data.data, 1504);
+  });
+
+  it('test alternate HackerRank cases', () => {
+    testAlternate("beabeefeab", 5);
+    testAlternate("asdcbsdcagfsdbgdfanfghbsfdab", 8);
+    testAlternate("asvkugfiugsalddlasguifgukvsa", 0);
+  });
+
+  it('test icecreamParlor HackerRank cases', () => {
+    testIcecreamParlor(4, [1, 4, 5, 3, 2], [1, 4]);
+    testIcecreamParlor(4, [2, 2, 4, 3], [1, 2]);
+    testIcecreamParlor(9, [1, 3, 4, 6, 7, 9], [2, 4]);
+    testIcecreamParlor(8, [1, 3, 4, 4, 6, 8], [3, 4]);
+    testIcecreamParlor(3, [1, 2], [1, 2]);
+
+
+  });
 
 });
